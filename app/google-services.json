@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "874136319879",
+    "firebase_url": "https://firestorecities.firebaseio.com",
+    "project_id": "firestorecities",
+    "storage_bucket": "firestorecities.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874136319879:android:a7930f5da72ef755",
+        "android_client_info": {
+          "package_name": "pl.skyesoftware.firestorecities"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874136319879-9n4bep7ru3ppc0lo271jqu2u35a2ohu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7OZxrTQOAW0ENJXkgQQg1j8rVZFdqFDA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

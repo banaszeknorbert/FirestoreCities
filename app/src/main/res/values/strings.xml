@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FirestoreCities</string>
+    <string name="cities_list_toolbar_title">FirestoreCities</string>
+    <string name="empty_list_mock_data_label">City list is empty. Click here to mock data.</string>
+    <string name="city_population_placeholder">Population: %s</string>
+    <string name="city_country_placeholder">Country: %s</string>
+    <string name="city_state_placeholder">State: %s</string>
+</resources>
