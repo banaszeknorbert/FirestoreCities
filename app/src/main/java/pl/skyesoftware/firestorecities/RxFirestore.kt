@@ -7,6 +7,7 @@ import io.reactivex.internal.disposables.DisposableHelper.isDisposed
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.Query
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -27,8 +28,23 @@ object RxFirestore {
                 if (!e.isDisposed) {
                     e.onNext(documentSnapshots)
                 }
-            }).addOnFailureListener(OnFailureListener { exception -> e.onError(exception) })
-            e.setCancellable { }
+            }).addOnFailureListener({ exception ->
+                e.onError(exception)
+            })
+        })
+    }
+
+    fun registerForUpdates(query: Query) : Observable<QuerySnapshot> {
+        return Observable.create({ e ->
+            query.addSnapshotListener( { documentSnapshot, firebaseFirestoreException ->
+                if (firebaseFirestoreException != null) {
+                    e.onError(firebaseFirestoreException)
+                } else {
+                    if (!e.isDisposed) {
+                        e.onNext(documentSnapshot)
+                    }
+                }
+            })
         })
     }
 }

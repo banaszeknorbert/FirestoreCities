@@ -1,6 +1,7 @@
 package pl.skyesoftware.firestorecities.adapter.delegate
 
 import android.support.annotation.StringRes
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -10,6 +11,7 @@ import pl.skyesoftware.firestorecities.data.model.City
 import pl.skyesoftware.firestorecities.data.model.ModelType
 import pl.skyesoftware.firestorecities.extensions.inflate
 import pl.skyesoftware.firestorecities.extensions.loadImg
+import pl.skyesoftware.firestorecities.viper.detail.CityDetailsActivity
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
@@ -40,13 +42,24 @@ class CityDelegateAdapter : ModelTypeDelegateAdapter {
         private val cityPopulation = itemView.findViewById<TextView>(R.id.cityPopulation)
 
         fun fillView(city: City) {
+            setTransitionNames()
             cityImageView.loadImg(city.imageUrl)
             cityName.text = city.name
-            val formatter = Formatter(StringBuilder(), Locale.getDefault())
-//            cityPopulation.text = formatter.format(itemView.context.getString(R.string.city_population_placeholder), city.population).toString()
             cityPopulation.text = getFormattedString(R.string.city_population_placeholder, NumberFormat.getNumberInstance(Locale.US).format(city.population))
             countryName.text = getFormattedString(R.string.city_country_placeholder, city.country)
             stateName.text = getFormattedString(R.string.city_state_placeholder, city.state)
+            itemView.setOnClickListener {
+                val cityDetailsObject = City.createCityDetailsObjectFromCityForPosition(city, adapterPosition)
+                CityDetailsActivity.start(itemView.context, cityDetailsObject, cityImageView, cityName)
+            }
+        }
+
+        private fun setTransitionNames() {
+            cityName.transitionName = "nameTransition_" + adapterPosition
+            stateName.transitionName = "stateTransition_" + adapterPosition
+            countryName.transitionName = "countryTransition_" + adapterPosition
+            cityPopulation.transitionName = "populationTransition_" + adapterPosition
+            cityImageView.transitionName = "imageTransition_" + adapterPosition
         }
 
         private fun getFormattedString(@StringRes resId: Int, value: Any) : String {

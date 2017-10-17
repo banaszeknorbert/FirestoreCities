@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="pl.skyesoftware.firestorecities.viper.citieslist.CitiesListActivity">
 
-    <android.support.v7.widget.Toolbar
+   <android.support.v7.widget.Toolbar
         android:id="@+id/citiesListToolbar"
         android:layout_width="0dp"
         android:layout_height="48dp"

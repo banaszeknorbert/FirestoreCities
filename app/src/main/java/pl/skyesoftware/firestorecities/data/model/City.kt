@@ -2,6 +2,7 @@ package pl.skyesoftware.firestorecities.data.model
 
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ServerTimestamp
+import pl.skyesoftware.firestorecities.viper.detail.CityDetailsObject
 
 /**
  * Created by norbertbanaszek on 17.10.2017.
@@ -89,6 +90,21 @@ class City(var id: String,
                     population = 1406630,
                     timestamp = System.currentTimeMillis()))
             return citiesList
+        }
+
+        fun createCityDetailsObjectFromCityForPosition(city: City, position: Int) : CityDetailsObject {
+            return CityDetailsObject(
+                    name = city.name,
+                    nameTransition = "nameTransition_" + position,
+                    state = city.state,
+                    stateTransition = "stateTransition_" + position,
+                    country = city.country,
+                    countryTransition = "countryTransition_" + position,
+                    population = city.population,
+                    populationTransition = "populationTransition_" + position,
+                    imageUrl = city.imageUrl,
+                    imageTransition = "imageTransition_" + position
+            )
         }
     }
 
